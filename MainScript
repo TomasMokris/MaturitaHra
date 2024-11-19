@@ -1,0 +1,26 @@
+workspace.Button.Touched:Connect(function(hit)
+	local character = hit.Parent
+	local player = game.Players:GetPlayerFromCharacter(character)
+
+	if player then
+		workspace.Door.Transparency = 1
+		workspace.Door.CanCollide = false
+
+		if character:FindFirstChild("Head") then
+			script.BillboardGui.Parent = character.Head
+		end
+		
+		print("Player Touched!")
+		
+		task.wait(3)
+
+		if character:FindFirstChild("Head") and character.Head:FindFirstChild("BillboardGui") then
+			character.Head.BillboardGui:Destroy()
+		end		
+		
+		print("Door Despawn")
+
+		workspace.Door.Transparency = 0
+		workspace.Door.CanCollide = true
+	end
+end)
